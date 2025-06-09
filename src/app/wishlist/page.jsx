@@ -1,11 +1,13 @@
 "use client";
 
+import EmptyWishlist from "@/components/EmptyWishlist";
 import WishlistItem from "@/components/WishlistItem";
 import { useWishlistStore } from "@/store/wishList";
 
 export default function WishlistPage() {
   const { wishlist, isInWishlist, toggleWishlist } = useWishlistStore();
-  console.log("Wishlist Items:", wishlist);
+
+  if (wishlist.length === 0) return <EmptyWishlist />;
 
   return (
     <div
