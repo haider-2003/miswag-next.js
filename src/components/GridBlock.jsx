@@ -2,21 +2,22 @@ import React from "react";
 
 export default function GridBlock({ content, properties }) {
   const {
+    // default values on case anything went wrong from the api
     cols,
-    rows,
-    outer_left_right_margins,
-    outer_top_bottom_margins,
-    inner_left_right_spacing,
-    inner_top_bottom_spacing,
+    rows = 1,
+    outer_left_right_margins = 16,
+    outer_top_bottom_margins = 8,
+    inner_left_right_spacing = 16,
+    inner_top_bottom_spacing = 16,
     direction = "vertical",
   } = properties;
 
-  // grid layout based on direction
+  // Calculate grid layout based on direction
   const isVertical = direction === "vertical";
   const gridCols = isVertical ? cols : rows;
   const gridRows = isVertical ? rows : cols;
 
-  // convert spacing values to pixels
+  // Convert spacing values to pixels
   const outerHorizontal = `${outer_left_right_margins}px`;
   const outerVertical = `${outer_top_bottom_margins}px`;
   const innerHorizontal = `${inner_left_right_spacing}px`;
@@ -25,7 +26,6 @@ export default function GridBlock({ content, properties }) {
   // i did it here because of two reasons:
   // 1 - i think handling calculations like this is better than using ${} with tailwind
   // 2 - it's more readable
-
   const containerStyle = {
     padding: `${outerVertical} ${outerHorizontal}`,
     display: "grid",
@@ -36,7 +36,8 @@ export default function GridBlock({ content, properties }) {
   const handleItemClick = (action) => {
     if (action?.target && action?.id) {
       console.log(`Clicked ${action.target} with ID: ${action.id}`);
-      // since there is no details enpoint i just loged them
+      // since i dont have specific endpoint like /apple etc
+      // i just logged to console 
     }
   };
 
